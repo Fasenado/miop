@@ -54,13 +54,20 @@ var creditsPage = function() {
 var main = function() {
 
     var canvas = document.getElementById("3DView");
-    var w = window.innerWidth;
-    var h = window.innerHeight;
-    osg.log("size " + w + " x " + h );
-    canvas.style.width = w;
-    canvas.style.height = h;
-    canvas.width = w;
-    canvas.height = h;
+    function resizeCanvas() {
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        canvas.style.width = w + "px";
+        canvas.style.height = h + "px";
+        canvas.width = w;
+        canvas.height = h;
+        if (Viewer) {
+            osg.Matrix.makePerspective(50, w / h, 1.0, 200.0, Viewer.getCamera().getProjectionMatrix());
+            Viewer.getCamera().getProjectionMatrix().dirty();
+        }
+    }
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
 
     $("#Won").click(function() {
         document.location.reload();
@@ -222,6 +229,25 @@ var main = function() {
 
     viewer.getManipulator().keydown = function(event) {
 	mainUpdate.playerInputDown(event);};
+
+    var isLeftKey = function(ev) { return ev.keyCode === 65 || ev.key === "a" || ev.key === "A" || ev.key === "ф" || ev.key === "Ф"; };
+    var isRightKey = function(ev) { return ev.keyCode === 68 || ev.key === "d" || ev.key === "D" || ev.key === "в" || ev.key === "В"; };
+    var onKeyDown = function(ev) {
+	if (isLeftKey(ev) || isRightKey(ev)) {
+	    mainUpdate.playerInputDown({ keyCode: isLeftKey(ev) ? 37 : 39 });
+	    ev.preventDefault();
+	    ev.stopPropagation();
+	}
+    };
+    var onKeyUp = function(ev) {
+	if (isLeftKey(ev) || isRightKey(ev)) {
+	    mainUpdate.playerInputUp({ keyCode: isLeftKey(ev) ? 37 : 39 });
+	    ev.preventDefault();
+	    ev.stopPropagation();
+	}
+    };
+    window.addEventListener("keydown", onKeyDown, true);
+    window.addEventListener("keyup", onKeyUp, true);
 
 
     url();

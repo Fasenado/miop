@@ -2,11 +2,9 @@
 
 <head>
 <style>
-  body {
-
-//  background:-moz-radial-gradient(farthest-side, rgba(0,0,0,0) 90%, rgba(0,0,0,0.1) 150%) rgb(76,76,76);
-//  background:-webkit-gradient(radial, center center, 500, center center, 1400, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.2))) rgb(76,76,76);
-
+  html, body {
+  width: 100%;
+  height: 100%;
   overflow:hidden;
   padding:0;
   margin:0;
@@ -23,7 +21,16 @@
 
   #ViewContainer {
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display:none;
+  }
+  #ViewContainer canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
   }
 
 
@@ -72,6 +79,9 @@
   }
   #MainMenu a {
   color: rgba(255,255,255,0.3);
+  }
+  #MainMenu a.wallet-link {
+  font-size: 0.35em;
   }
 
 
@@ -177,7 +187,8 @@
 
   <div id="MainMenu">
     <a href="#" onClick="startGamePage();">Start</a><br>
-    <a href="#" onClick="creditsPage();">Credits</a>
+    <a href="https://x.com/miop_sol" target="_blank">Twitter</a><br>
+    <a href="http://pump.fun/coin/2G64mN82d8kDcv1jPZHLA3i42tdSPhvqbqJjY6xDpump" target="_blank" class="wallet-link">2G64mN82d8kDcv1jPZHLA3i42tdSPhvqbqJjY6xDpump</a>
   </div>
 
   <div id="TeamCredits" class="credit_link credit_link_hover">
@@ -196,7 +207,7 @@
 
   <div id="CreditsFred">
     Sounds<br>
-    FrÈdÈric Sommer<br>
+    Frùdùric Sommer<br>
     <a href="https://www.lecortex.com" >www.lecortex.com</a>
   </div>
 

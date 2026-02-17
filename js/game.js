@@ -748,9 +748,9 @@ MainUpdate.prototype = {
     },
     
     playerInputUp: function(event) {
-	if (event.keyCode === 39) {
+	if (event.keyCode === 39 || event.keyCode === 68) {
 	    this._space.ctrl[1] = 0;
-	} else if (event.keyCode === 37) {
+	} else if (event.keyCode === 37 || event.keyCode === 65) {
 	    this._space.ctrl[0] = 0;
 	}/* else if (event.keyCode === 32) {
 	    for(var i = 0; i < this._space.boidsList.length; i++) {
@@ -773,9 +773,9 @@ MainUpdate.prototype = {
     
     playerInputDown: function(event) {
 	//osg.log(event);
-	if (event.keyCode === 39) {
+	if (event.keyCode === 39 || event.keyCode === 68) {
 	    this._space.ctrl[1] = 1;
-	} else if (event.keyCode === 37) {
+	} else if (event.keyCode === 37 || event.keyCode === 65) {
 	    this._space.ctrl[0] = 1;
 	}
     },
